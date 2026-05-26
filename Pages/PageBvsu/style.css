@@ -738,132 +738,93 @@ body {
 }
 
 /* =============================================
-   VOZVRAT — дополнительные стили
+   BMSTU — уникальные стили компоновки
    ============================================= */
 
-/* Hero с параллакс-слоем */
+/* Hero — тёмный на весь экран */
 .hero {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
+  background: #0F0A1E;
+  max-width: 100%;
+  padding: 110px 48px 90px;
+  margin: 0;
 }
-.hero__parallax {
-  position: absolute;
-  inset: -60px 0;
-  background: radial-gradient(ellipse at 70% 50%, rgba(245,166,35,0.07) 0%, transparent 65%);
-  pointer-events: none;
-  will-change: transform;
-}
-.hero__content {
-  position: relative;
-  z-index: 1;
-  padding: 96px 48px 80px;
+.hero__inner {
   max-width: 1100px;
   margin: 0 auto;
 }
-
-/* Параллакс-секции */
-.parallax-section {
-  position: relative;
-  overflow: hidden;
+.hero__title em { color: var(--gold); }
+.hero__title { color: #fff; }
+.hero__desc { color: rgba(255,255,255,0.6); }
+.hero__badge {
+  background: rgba(245,166,35,0.15);
+  border-color: rgba(245,166,35,0.3);
+  color: var(--gold);
 }
-.parallax-bg {
+.hero__badge-dot { background: var(--gold); }
+.stat__label { color: rgba(255,255,255,0.45); }
+
+/* Горизонтальный таймлайн ступеней */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  position: relative;
+}
+.steps::before {
+  content: '';
   position: absolute;
-  inset: -80px 0;
-  pointer-events: none;
-  will-change: transform;
-  background: radial-gradient(ellipse at 30% 60%, rgba(245,166,35,0.04) 0%, transparent 60%);
+  top: 27px; left: 10%; right: 10%;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), rgba(245,166,35,0.2));
+  bottom: auto; width: auto;
 }
-.section__body {
-  position: relative;
-  z-index: 1;
-}
-
-/* Шаги — карточки без вертикальной линии */
-.steps { position: static; gap: 14px; }
-.steps::before { display: none; }
-
 .step {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 28px 32px;
-  box-shadow: var(--shadow-sm);
-  opacity: 0;
-  transform: translateX(60px);
-  transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.25s;
-}
-.step.is-visible { opacity: 1; transform: translateX(0); }
-.step:hover { border-color: var(--gold-border); box-shadow: var(--shadow-md); }
-
-.step__num {
-  width: 44px; height: 44px;
-  border-radius: var(--radius-sm);
-  font-size: 15px;
-  flex-shrink: 0;
-}
-
-/* Прогресс-бар под каждым шагом */
-.step__progress {
-  margin-top: 14px;
-  height: 4px;
-  background: var(--border);
-  border-radius: 100px;
-  overflow: hidden;
-}
-.step__progress-bar {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(to right, var(--gold), var(--gold-dark));
-  border-radius: 100px;
-  transition: width 1s ease;
-}
-
-/* Пульсация иконок при появлении */
-.pulse-icon {
-  display: inline-block;
-  animation: none;
-}
-.pulse-icon.is-pulsing {
-  animation: iconPulse 0.6s ease;
-}
-@keyframes iconPulse {
-  0%   { transform: scale(1); }
-  40%  { transform: scale(1.35); }
-  70%  { transform: scale(0.9); }
-  100% { transform: scale(1); }
-}
-
-/* Scale-анимация для карточек и документов */
-.doc-item,
-.card,
-.faq__item {
-  opacity: 0;
-  transform: scale(0.94);
-  transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.25s, box-shadow 0.25s;
-}
-.doc-item.is-visible,
-.card.is-visible,
-.faq__item.is-visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Highlight box и CTA */
-.highlight-box,
-.cta {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 12px;
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
-.highlight-box.is-visible,
-.cta.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+.step.is-visible { opacity: 1; transform: translateY(0); }
+.step__num {
+  margin-bottom: 20px;
+  position: relative; z-index: 1;
+}
+.step__content h3 { font-size: 13px; }
+.step__content p { font-size: 13px; }
+
+/* CTA с другим фоном */
+.cta { background: #0F0A1E; }
+.cta h2 { color: #fff; }
+.cta p { color: rgba(255,255,255,0.6); }
+.btn-primary { background: var(--gold); }
+.btn-primary:hover { background: var(--gold-dark); }
+.btn-secondary {
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  border-color: rgba(255,255,255,0.25);
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.6);
+  color: #fff;
 }
 
-/* Адаптив */
+/* Адаптив таймлайна */
 @media (max-width: 860px) {
-  .hero__content { padding: 60px 20px; }
-  .parallax-section { overflow: visible; }
+  .hero { padding: 60px 20px; }
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .steps::before { display: none; }
+  .step {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .step__num { margin-bottom: 0; flex-shrink: 0; }
 }
