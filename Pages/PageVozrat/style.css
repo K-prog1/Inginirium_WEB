@@ -819,6 +819,11 @@ body {
   transition: width 1s ease;
 }
 
+.step__content {
+  flex: 1;
+  min-width: 0;
+}
+
 /* Пульсация иконок при появлении */
 .pulse-icon {
   display: inline-block;

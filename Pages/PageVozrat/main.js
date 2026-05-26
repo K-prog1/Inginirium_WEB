@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* -------------------------------------------------
-     4. FAQ ACCORDION
+     4.  ACCORDION
   ------------------------------------------------- */
   document.querySelectorAll('.faq__question').forEach(btn => {
     btn.addEventListener('click', () => {
